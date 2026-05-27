@@ -1,24 +1,15 @@
 package com.makersmuse.enums;
 
-public enum ArtCategory {
-    OIL_PAINTING,
-    WATERCOLOR,
-    DIGITAL_ILLUSTRATION,
-    THREE_D_RENDER,
-    ABSTRACT_ART,
+public enum ArtCategory {  
+   
+   
+    PORTRAITS,
     PHOTOGRAPHY,
-    PIXEL_ART,
-    POP_ART,
     SCULPTURE_CERAMICS,
-    TYPOGRAPHY_CALLIGRAPHY,
-    CONCEPT_ART,
-    VECTOR_GRAPHICS,
-    MINIMALIST_ART,
-    ANIME_MANGA,
-    CYBERPUNK_SCIFI,
-    FANTASY_ART,
-    STREET_ART_GRAFFITI,
-    AI_GENERATED_ART,
-    TEXTURES_PATTERNS,
-    MIXED_MEDIA
+    RESIN_ART,
+    CROCHET_ART,
+    CANDLE,
+    JEWELERY,
+    OTHERS
+
 }

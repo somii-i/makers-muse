@@ -23,16 +23,29 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="min-h-screen pt-24 pb-16">
-      <div className="page-container max-w-5xl">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="section-title text-5xl mb-4">Contact Us</h1>
-          <p className="text-white/50 text-lg max-w-xl mx-auto">
-            Have a question, feedback, or need support? We're here to help.
+    <main className="min-h-screen pb-16">
+      {/* Hero Banner */}
+      <section className="relative h-[40vh] min-h-[300px] overflow-hidden mb-12">
+        <img
+          src="/hero-contact.png"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-canvas-900/70 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+          <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full mb-6 text-sm py-1.5 px-4">
+            <Mail className="w-3.5 h-3.5" /> Get in Touch
+          </div>
+          <h1 className="font-display font-black text-4xl md:text-6xl text-white mb-4">
+            We'd Love to Hear <br />From You
+          </h1>
+          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+            Have a question about an order, need help setting up your shop, or just want to say hi?
           </p>
         </div>
+      </section>
 
+      <div className="page-container max-w-5xl">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* Contact Info */}
           <div className="space-y-6">

@@ -126,8 +126,8 @@ export default function ArtistDashboard() {
                       <h3 className="font-semibold text-white text-sm line-clamp-1">{art.title}</h3>
                       <div className="flex items-center justify-between mt-1">
                         <span className="font-bold text-white">₹{Number(art.price).toFixed(2)}</span>
-                        <span className={`badge text-[10px] ${art.licenseType === 'DIGITAL_DOWNLOAD' ? 'badge-primary' : 'badge-warning'}`}>
-                          {art.licenseType === 'DIGITAL_DOWNLOAD' ? 'Digital' : 'Print'}
+                        <span className={`badge text-[10px] ${art.licenseType === 'DIGITAL' ? 'badge-primary' : 'badge-warning'}`}>
+                          {art.licenseType === 'DIGITAL' ? 'Digital' : 'Print'}
                         </span>
                       </div>
                     </div>

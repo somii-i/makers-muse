@@ -81,10 +81,10 @@ export default function OrderSuccessPage() {
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-white text-sm line-clamp-1">{item.artworkTitle}</p>
                       <p className="text-xs text-white/40 mt-0.5">
-                        ₹{Number(item.purchasePrice).toFixed(2)} • {item.licenseType === 'DIGITAL_DOWNLOAD' ? 'Digital Download' : 'Physical Print'}
+                        ₹{Number(item.purchasePrice).toFixed(2)} • {item.licenseType === 'DIGITAL' ? 'Digital Download' : 'Physical Print'}
                       </p>
                     </div>
-                    {item.licenseType === 'DIGITAL_DOWNLOAD' && latestOrder.paymentStatus === 'COMPLETED' && (
+                    {item.licenseType === 'DIGITAL' && latestOrder.paymentStatus === 'COMPLETED' && (
                       <button
                         id={`download-item-${item.itemId}`}
                         onClick={() => handleDownload(latestOrder.id, item.itemId)}

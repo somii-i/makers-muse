@@ -35,7 +35,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md animate-slide-up relative">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 to-pink-500 flex items-center justify-center mx-auto mb-4 shadow-xl shadow-primary-500/30">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 to-cyan-500 flex items-center justify-center mx-auto mb-4 shadow-xl shadow-primary-500/30">
             <Palette className="w-7 h-7 text-white" />
           </div>
           <h1 className="font-display font-bold text-3xl text-white">Welcome Back</h1>

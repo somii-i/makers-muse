@@ -22,12 +22,26 @@ export default function ServicesPage() {
   ]
 
   return (
-    <main className="min-h-screen pt-24 pb-16">
-      <div className="page-container">
-        <div className="text-center mb-16">
-          <h1 className="section-title text-5xl mb-4">Our Services</h1>
-          <p className="text-white/50 text-lg max-w-xl mx-auto">Everything you need — whether you create art or collect it.</p>
+    <main className="min-h-screen pb-16">
+      {/* Hero Banner */}
+      <section className="relative h-[40vh] min-h-[300px] overflow-hidden mb-12">
+        <img
+          src="/hero-services.png"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-canvas-900/70 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+          <h1 className="font-display font-black text-4xl md:text-6xl text-white mb-4">
+            Our Services
+          </h1>
+          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+            Everything you need — whether you create art or collect it.
+          </p>
         </div>
+      </section>
+
+      <div className="page-container">
 
         {/* For Buyers */}
         <section className="mb-16">

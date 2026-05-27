@@ -24,7 +24,7 @@
         <jjwt.version>0.12.5</jjwt.version>
         <aws.sdk.version>2.25.28</aws.sdk.version>
         <stripe.version>24.3.0</stripe.version>
-        <spring-ai.version>1.0.0-M1</spring-ai.version>
+        <spring-ai.version>1.0.0-M6</spring-ai.version>
     </properties>
 
     <repositories>
@@ -130,11 +130,7 @@
             <version>0.4.20</version>
         </dependency>
 
-        <!-- Spring AI — OpenAI -->
-        <dependency>
-            <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
-        </dependency>
+
 
         <!-- Spring Mail (for OTP / contact emails) -->
         <dependency>

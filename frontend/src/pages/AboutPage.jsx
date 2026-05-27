@@ -11,19 +11,23 @@ export default function AboutPage() {
 
   return (
     <main className="min-h-screen pt-24 pb-16">
-      {/* Hero */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
-        <div className="page-container text-center relative">
-          <div className="inline-flex items-center gap-2 badge-primary mb-6 text-sm py-1.5 px-4">
+      {/* Hero Banner */}
+      <section className="relative h-[40vh] min-h-[300px] overflow-hidden">
+        <img
+          src="/hero-about.png"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-canvas-900/70 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+          <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-full mb-6 text-sm py-1.5 px-4">
             <Heart className="w-3.5 h-3.5" /> Our Story
           </div>
-          <h1 className="section-title text-5xl md:text-6xl mb-6">
-            Built for Artists, <br /><span className="gradient-text">By Art Lovers</span>
+          <h1 className="font-display font-black text-4xl md:text-6xl text-white mb-4">
+            Built for Artists, <br />By Art Lovers
           </h1>
-          <p className="text-white/50 text-lg max-w-2xl mx-auto leading-relaxed">
-            Makers Muse was born from a simple belief: every artist deserves a beautiful place to share their work 
-            with the world — and every art lover deserves to discover it.
+          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+            Makers Muse was born from a simple belief: every artist deserves a beautiful place to share their work.
           </p>
         </div>
       </section>
@@ -33,7 +37,7 @@ export default function AboutPage() {
         <div className="page-container max-w-4xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: Palette, title: 'Our Mission', color: 'from-primary-500 to-pink-500',
+              { icon: Palette, title: 'Our Mission', color: 'from-primary-500 to-cyan-500',
                 text: 'To create the most artist-friendly marketplace on the internet, where creators keep the majority of what they earn and buyers find truly unique art.' },
               { icon: Globe,   title: 'Global Reach', color: 'from-emerald-500 to-teal-500',
                 text: 'Connecting artists and collectors from over 50 countries, spanning 20 art categories from oil paintings to AI-generated masterpieces.' },

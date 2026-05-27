@@ -27,7 +27,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1 space-y-4">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-pink-500 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-cyan-500 flex items-center justify-center">
                 <Palette className="w-4 h-4 text-white" />
               </div>
               <span className="font-display font-bold text-lg gradient-text">Makers Muse</span>

@@ -12,7 +12,7 @@ export default function ArtUploadForm({ onSuccess }) {
     price: '',
     dimensions: '',
     category: '',
-    licenseType: 'DIGITAL_DOWNLOAD',
+    licenseType: 'DIGITAL',
     stockCount: '1',
   })
   const [loading, setLoading] = useState(false)
@@ -63,7 +63,7 @@ export default function ArtUploadForm({ onSuccess }) {
       setSuccess(true)
       setFile(null)
       setPreview(null)
-      setForm({ title: '', description: '', price: '', dimensions: '', category: '', licenseType: 'DIGITAL_DOWNLOAD', stockCount: '1' })
+      setForm({ title: '', description: '', price: '', dimensions: '', category: '', licenseType: 'DIGITAL', stockCount: '1' })
       onSuccess?.()
       setTimeout(() => setSuccess(false), 3000)
     } catch (err) {
@@ -196,8 +196,8 @@ export default function ArtUploadForm({ onSuccess }) {
             value={form.licenseType}
             onChange={(e) => setForm({ ...form, licenseType: e.target.value })}
           >
-            <option value="DIGITAL_DOWNLOAD">Digital Download</option>
-            <option value="PHYSICAL_PRINT">Physical Print</option>
+            <option value="DIGITAL">Digital Download</option>
+            <option value="PHYSICAL">Physical Print</option>
           </select>
         </div>
 

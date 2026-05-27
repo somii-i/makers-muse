@@ -50,7 +50,7 @@ export default function ChatWidget() {
         <div className="card flex flex-col h-[500px] overflow-hidden border border-primary-500/20">
           {/* Header */}
           <div className="flex items-center gap-3 p-4 border-b border-white/10 bg-gradient-to-r from-primary-900/50 to-canvas-700">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-pink-500 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-cyan-500 flex items-center justify-center">
               <Bot className="w-4 h-4 text-white" />
             </div>
             <div>
@@ -71,7 +71,7 @@ export default function ChatWidget() {
               <div key={i} className={`flex gap-2.5 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
                 <div className={`w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center ${
                   msg.role === 'assistant'
-                    ? 'bg-gradient-to-br from-primary-500 to-pink-500'
+                    ? 'bg-gradient-to-br from-primary-500 to-cyan-500'
                     : 'bg-canvas-600 border border-white/10'
                 }`}>
                   {msg.role === 'assistant'
@@ -89,7 +89,7 @@ export default function ChatWidget() {
             ))}
             {loading && (
               <div className="flex gap-2.5">
-                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary-500 to-pink-500 flex items-center justify-center">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary-500 to-cyan-500 flex items-center justify-center">
                   <Bot className="w-3.5 h-3.5 text-white" />
                 </div>
                 <div className="bg-canvas-700 rounded-2xl rounded-tl-sm px-4 py-3">
@@ -127,7 +127,7 @@ export default function ChatWidget() {
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
               </button>
             </div>
-            <p className="text-[10px] text-white/20 text-center mt-1.5">Powered by Spring AI + OpenAI</p>
+            <p className="text-[10px] text-white/20 text-center mt-1.5">Powered by Gemini 2.5 Flash</p>
           </div>
         </div>
       </div>
@@ -136,7 +136,7 @@ export default function ChatWidget() {
       <button
         id="chat-toggle-btn"
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-primary-500 to-pink-500 shadow-xl shadow-primary-500/40 flex items-center justify-center hover:scale-110 transition-all duration-200 animate-glow-pulse"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-primary-500 to-cyan-500 shadow-xl shadow-primary-500/40 flex items-center justify-center hover:scale-110 transition-all duration-200 animate-glow-pulse"
         aria-label="Open chat"
       >
         {open ? <X className="w-6 h-6 text-white" /> : <MessageCircle className="w-6 h-6 text-white" />}

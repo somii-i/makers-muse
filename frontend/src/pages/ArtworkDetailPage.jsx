@@ -87,8 +87,8 @@ export default function ArtworkDetailPage() {
               <div className="font-display font-bold text-4xl text-white">
                 ₹{Number(artwork.price).toFixed(2)}
               </div>
-              <span className={`badge ${artwork.licenseType === 'DIGITAL_DOWNLOAD' ? 'badge-primary' : 'badge-warning'}`}>
-                {artwork.licenseType === 'DIGITAL_DOWNLOAD' ? 'Digital Download' : 'Physical Print'}
+              <span className={`badge ${artwork.licenseType === 'DIGITAL' ? 'badge-primary' : 'badge-warning'}`}>
+                {artwork.licenseType === 'DIGITAL' ? 'Digital Download' : 'Physical Print'}
               </span>
             </div>
 
@@ -126,7 +126,7 @@ export default function ArtworkDetailPage() {
               </button>
             )}
 
-            {artwork.licenseType === 'DIGITAL_DOWNLOAD' && (
+            {artwork.licenseType === 'DIGITAL' && (
               <p className="text-xs text-white/30 flex items-center gap-1.5">
                 <Download className="w-3.5 h-3.5" />
                 Secure download link provided after purchase (valid 30 minutes)

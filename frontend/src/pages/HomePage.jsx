@@ -3,23 +3,25 @@ import { ArrowRight, Sparkles, Shield, Zap, Palette } from 'lucide-react'
 import { ALL_CATEGORIES, CATEGORY_LABELS } from '../types/index.js'
 
 const CATEGORY_EMOJIS = {
-  OIL_PAINTING: '🎨', WATERCOLOR: '🖌️', DIGITAL_ILLUSTRATION: '💻',
-  THREE_D_RENDER: '🧊', ABSTRACT_ART: '🌀', PHOTOGRAPHY: '📷',
-  PIXEL_ART: '👾', POP_ART: '🎭', SCULPTURE_CERAMICS: '🏺',
-  TYPOGRAPHY_CALLIGRAPHY: '✍️', CONCEPT_ART: '🛸', VECTOR_GRAPHICS: '✏️',
-  MINIMALIST_ART: '◻️', ANIME_MANGA: '⛩️', CYBERPUNK_SCIFI: '🤖',
-  FANTASY_ART: '🐉', STREET_ART_GRAFFITI: '🏙️', AI_GENERATED_ART: '🧠',
-  TEXTURES_PATTERNS: '🔷', MIXED_MEDIA: '🎪',
+  PORTRAITS: '🖼️', PHOTOGRAPHY: '📷', SCULPTURE_CERAMICS: '🏺',
+  RESIN_ART: '✨', CROCHET_ART: '🧶', CANDLE: '🕯️', 
+  JEWELERY: '💍', OTHERS: '🎨'
 }
 
 export default function HomePage() {
   return (
     <main className="min-h-screen">
-      {/* Hero */}
+      {/* Hero with background image */}
       <section className="relative pt-32 pb-24 overflow-hidden">
-        {/* Background glow */}
-        <div className="absolute inset-0 bg-hero-glow pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary-500/5 blur-3xl pointer-events-none" />
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img
+            src="/hero-home.png"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-canvas-900/70 backdrop-blur-[2px]" />
+        </div>
 
         <div className="page-container relative text-center">
           <div className="inline-flex items-center gap-2 badge-primary mb-8 text-sm py-1.5 px-4">
@@ -76,7 +78,7 @@ export default function HomePage() {
                 icon: Zap,
                 title: 'Instant Downloads',
                 desc: 'Get time-limited secure download links for digital art immediately after purchase.',
-                color: 'from-primary-500 to-pink-500',
+                color: 'from-primary-500 to-cyan-500',
               },
               {
                 icon: Palette,

@@ -114,7 +114,7 @@ public class OrderService {
 
         // Generate download tokens for digital items and send confirmation emails
         for (OrderItem item : order.getItems()) {
-            if (item.getArtwork().getLicenseType() == LicenseType.DIGITAL_DOWNLOAD) {
+            if (item.getArtwork().getLicenseType() == LicenseType.DIGITAL) {
                 DownloadToken token = downloadTokenService.createToken(item);
                 emailService.sendPurchaseConfirmation(
                         order.getCustomer().getEmail(),
@@ -160,7 +160,7 @@ public class OrderService {
                 .orElseThrow(() -> new RuntimeException("Order item not found"));
 
         Artwork artwork = orderItem.getArtwork();
-        if (artwork.getLicenseType() != LicenseType.DIGITAL_DOWNLOAD) {
+        if (artwork.getLicenseType() != LicenseType.DIGITAL) {
             throw new IllegalStateException("This artwork does not support digital download");
         }
 

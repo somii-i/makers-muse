@@ -85,10 +85,10 @@ export default function BuyerDashboard() {
                       <div className="flex-1 min-w-0">
                         <p className="font-medium text-white text-sm line-clamp-1">{item.artworkTitle}</p>
                         <p className="text-xs text-white/40 mt-0.5">
-                          ₹{Number(item.purchasePrice).toFixed(2)} • {item.licenseType === 'DIGITAL_DOWNLOAD' ? 'Digital Download' : 'Physical Print'}
+                          ₹{Number(item.purchasePrice).toFixed(2)} • {item.licenseType === 'DIGITAL' ? 'Digital Download' : 'Physical Print'}
                         </p>
                       </div>
-                      {item.licenseType === 'DIGITAL_DOWNLOAD' && order.paymentStatus === 'COMPLETED' && (
+                      {item.licenseType === 'DIGITAL' && order.paymentStatus === 'COMPLETED' && (
                         <a
                           href={`/download/${item.artworkId}`}
                           target="_blank"

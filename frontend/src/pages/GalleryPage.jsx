@@ -59,14 +59,25 @@ export default function GalleryPage() {
 
   return (
     <main className="min-h-screen pt-24 pb-16">
-      <div className="page-container">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="section-title mb-2">Art Gallery</h1>
-          <p className="text-white/40">
-            {pageInfo ? `${pageInfo.totalElements.toLocaleString()} artworks` : 'Discovering artworks…'}
+      {/* Hero Banner */}
+      <section className="relative h-64 md:h-72 overflow-hidden">
+        <img
+          src="/hero-gallery.png"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-canvas-900/70 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+          <h1 className="font-display font-black text-4xl md:text-5xl text-white mb-3">
+            Art Gallery
+          </h1>
+          <p className="text-white/80 text-lg max-w-xl">
+            {pageInfo ? `${pageInfo.totalElements.toLocaleString()} artworks to explore` : 'Discovering artworks…'}
           </p>
         </div>
+      </section>
+
+      <div className="page-container py-10">
 
         {/* Search + Sort Bar */}
         <div className="flex flex-col sm:flex-row gap-3 mb-6">

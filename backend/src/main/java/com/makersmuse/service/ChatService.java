@@ -2,9 +2,15 @@ package com.makersmuse.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,9 +19,10 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 public class ChatService {
 
-    private final ChatClient.Builder chatClientBuilder;
+    @Value("${GEMINI_API_KEY:}")
+    private String geminiApiKey;
 
-    // In-memory session store (use Redis in production)
+    private final RestTemplate restTemplate = new RestTemplate();
     private final Map<String, String> sessionHistory = new ConcurrentHashMap<>();
 
     private static final String SYSTEM_PROMPT = """
@@ -26,10 +33,7 @@ public class ChatService {
             - Sellers with tips on pricing, descriptions, and uploading their work
             - Everyone with questions about payments, downloads, accounts, and policies
             
-            Our platform supports 20 art categories: Oil Painting, Watercolor, Digital Illustration, 3D Render,
-            Abstract Art, Photography, Pixel Art, Pop Art, Sculpture & Ceramics, Typography & Calligraphy,
-            Concept Art, Vector Graphics, Minimalist Art, Anime & Manga, Cyberpunk/Sci-Fi, Fantasy Art,
-            Street Art & Graffiti, AI Generated Art, Textures & Patterns, and Mixed Media.
+            Our platform supports 20 art categories: PORTRAITS,PHOTOGRAPHY, SCULPTURE_CERAMICS,RESIN_ART, CROCHET_ART,CANDLE,JEWELERY,OTHERS
             
             Payments are secured by Stripe. Digital downloads are available immediately after purchase,
             with links valid for 24 hours and up to 3 downloads.
@@ -38,26 +42,49 @@ public class ChatService {
             suggest using the search and filter features on the marketplace.
             """;
 
-    /**
-     * Sends a message to the AI and returns the response.
-     * sessionId is used to maintain per-user context (simplified in-memory).
-     */
     public String chat(String sessionId, String userMessage) {
         try {
-            ChatClient chatClient = chatClientBuilder.build();
+            if (geminiApiKey == null || geminiApiKey.trim().isEmpty() || geminiApiKey.contains("your-actual-")) {
+                return "Gemini API Key is missing. Please add GEMINI_API_KEY to your .env file.";
+            }
 
-            String response = chatClient.prompt()
-                    .system(SYSTEM_PROMPT)
-                    .user(userMessage)
-                    .call()
-                    .content();
+            // gemini-2.5-flash — the latest free model available
+            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + geminiApiKey;
 
-            log.debug("Chat [{}]: {} -> {}", sessionId, userMessage.substring(0, Math.min(50, userMessage.length())), response.substring(0, Math.min(80, response.length())));
-            return response;
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            Map<String, Object> requestBody = Map.of(
+                    "systemInstruction", Map.of(
+                            "parts", List.of(Map.of("text", SYSTEM_PROMPT))
+                    ),
+                    "contents", List.of(
+                            Map.of("parts", List.of(Map.of("text", userMessage)))
+                    )
+            );
+
+            HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
+            ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
+
+            Map<String, Object> responseBody = response.getBody();
+            if (responseBody != null && responseBody.containsKey("candidates")) {
+                List<Map<String, Object>> candidates = (List<Map<String, Object>>) responseBody.get("candidates");
+                if (!candidates.isEmpty()) {
+                    Map<String, Object> content = (Map<String, Object>) candidates.get(0).get("content");
+                    List<Map<String, Object>> parts = (List<Map<String, Object>>) content.get("parts");
+                    if (!parts.isEmpty()) {
+                        String reply = (String) parts.get(0).get("text");
+                        log.debug("Chat [{}]: {} -> {}", sessionId, userMessage, reply);
+                        return reply;
+                    }
+                }
+            }
+
+            return "Muse is thinking... but couldn't formulate a response.";
 
         } catch (Exception e) {
             log.error("Chat error for session {}: {}", sessionId, e.getMessage());
-            return "OpenAI Connection Error: " + e.getMessage() + ". (Check your backend console for more details)";
+            return "Gemini Connection Error: " + e.getMessage();
         }
     }
 }
