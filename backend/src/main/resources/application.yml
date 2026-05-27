@@ -1,0 +1,102 @@
+spring:
+  application:
+    name: makers-muse-backend
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.7
+    retry:
+      max-attempts: 1
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/makersmuse}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 55MB
+
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# ──────────────────────────────────────────────
+# JWT Configuration
+# ──────────────────────────────────────────────
+jwt:
+  secret: ${JWT_SECRET}
+  expiration-ms: ${JWT_EXPIRATION_MS:86400000}   # 24 hours default
+
+# ──────────────────────────────────────────────
+# Local File Storage Configuration
+# ──────────────────────────────────────────────
+storage:
+  local:
+    upload-dir: ./uploads
+
+# ──────────────────────────────────────────────
+# CORS Configuration
+# ──────────────────────────────────────────────
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000}
+
+# ──────────────────────────────────────────────
+# Actuator
+# ──────────────────────────────────────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when_authorized
+
+logging:
+  level:
+    com.makersmuse: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: INFO
+
+# ──────────────────────────────────────────────
+# Download Token Config
+# ──────────────────────────────────────────────
+download:
+  token:
+    validity-hours: ${DOWNLOAD_TOKEN_VALIDITY_HOURS:24}
+    max-uses: ${DOWNLOAD_TOKEN_MAX_USES:3}
