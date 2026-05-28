@@ -1,17 +1,32 @@
 import axios from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
+// Ensure the base URL ends with /api, and clean up any trailing slashes
+let rawBase = import.meta.env.VITE_API_BASE_URL || ''
+// If they accidentally included .api instead of /api, fix it on the fly
+rawBase = rawBase.replace('.api', '/api')
+if (!rawBase.endsWith('/api')) {
+    rawBase = rawBase.replace(/\/+$/, '') + '/api'
+}
 
 const apiClient = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: rawBase,
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
-// ── Request Interceptor: Attach JWT ───────────────────────────────────────────
+// ── Request Interceptor: Attach JWT and Fix Paths ─────────────────────────────
 apiClient.interceptors.request.use(
   (config) => {
+    // Prevent Axios from overwriting the /api baseURL by stripping leading slashes
+    if (config.url && config.url.startsWith('/')) {
+      config.url = config.url.substring(1)
+    }
+    // Also ensure baseURL has a trailing slash to append safely
+    if (config.baseURL && !config.baseURL.endsWith('/')) {
+      config.baseURL += '/'
+    }
+
     const token = localStorage.getItem('mm_token')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
