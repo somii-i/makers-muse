@@ -28,7 +28,7 @@ export default function ArtCard({ artwork }) {
         {/* License badge */}
         <div className="absolute top-3 left-3">
           <span className={`badge text-[10px] ${artwork.licenseType === 'DIGITAL' ? 'badge-primary' : 'badge-warning'}`}>
-            {artwork.licenseType === 'DIGITAL' ? 'Digital' : 'Print'}
+            {artwork.licenseType === 'DIGITAL' ? 'Digital' : 'Physical'}
           </span>
         </div>
       </Link>
