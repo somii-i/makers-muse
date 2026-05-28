@@ -17,7 +17,7 @@ export const ALL_CATEGORIES = Object.keys(CATEGORY_LABELS)
 // Converts relative backend paths like /api/files/thumbnails/abc.jpg
 // to absolute URLs pointing at the Render backend in production.
 const BACKEND_BASE = import.meta.env.VITE_API_BASE_URL
-  ? import.meta.env.VITE_API_BASE_URL.replace('/api', '')
+  ? import.meta.env.VITE_API_BASE_URL.replace(/\/api\/?$/, '').replace(/\/$/, '')
   : ''
 
 export function getImageUrl(url) {
