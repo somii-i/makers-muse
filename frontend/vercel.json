@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/files/:match*",
+      "destination": "https://makers-muse.onrender.com/api/files/:match*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
