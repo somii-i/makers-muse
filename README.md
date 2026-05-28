@@ -1,167 +1,104 @@
-# Makers Muse — Art Marketplace
+# Makers Muse 🎨
 
-> A production-ready, two-sided art marketplace connecting **Artists** (sellers) and **Customers** (buyers).
+Makers Muse is a premium, two-sided art marketplace connecting talented artists with art collectors and enthusiasts. It provides a platform for artists to showcase their portfolios, sell original physical artworks, and offer digital licenses, while giving buyers a seamless, curated shopping experience.
 
-## Tech Stack
+![Makers Muse Gallery](frontend/public/hero-gallery.png)
 
-| Layer       | Technology                                          |
-|-------------|-----------------------------------------------------|
-| Frontend    | React 18 · Vite · TypeScript · Tailwind CSS v3     |
-| Routing     | React Router v6                                     |
-| HTTP Client | Axios with JWT interceptor                          |
-| Icons       | Lucide React                                        |
-| Backend     | Spring Boot 3 (Java 17)                             |
-| Security    | Spring Security · Stateless JWT (jjwt 0.12)        |
-| Database    | PostgreSQL with Spring Data JPA                     |
-| File Store  | AWS S3 SDK v2 (private high-res + public thumbnails)|
-| Payments    | Stripe Java SDK (Checkout Sessions + Webhooks)      |
-| Thumbnails  | Thumbnailator (server-side compression)             |
+## 🌟 Key Features
 
----
+### For Artists
+*   **Artist Dashboard**: Dedicated portal to manage portfolios, track sales, and monitor earnings.
+*   **Artwork Management**: Upload high-resolution artworks with automatic thumbnail generation.
+*   **Flexible Licensing**: Sell physical originals or offer digital usage licenses.
+*   **Cloud Storage**: Permanent, secure image hosting via Cloudinary.
 
-## Project Structure
+### For Buyers
+*   **Curated Gallery**: Browse artworks by category (Watercolor, Portrait, Photography, etc.) with advanced filtering.
+*   **Shopping Cart & Checkout**: Seamless purchasing flow for both physical and digital art.
+*   **Order Tracking**: Dedicated buyer dashboard to view past purchases and download digital assets.
+*   **Reviews & Ratings**: Leave feedback on purchased artworks to help the community.
 
-```
-makers-muse/
-├── backend/                    # Spring Boot Maven project
-│   ├── pom.xml
-│   ├── .env.example
-│   └── src/main/
-│       ├── java/com/makersmuse/
-│       │   ├── config/         # Security, CORS, S3, Stripe configs
-│       │   ├── controller/     # Auth, Artwork, Order, Webhook
-│       │   ├── dto/            # Request/Response DTOs
-│       │   ├── entity/         # JPA Entities (5)
-│       │   ├── enums/          # Role, ArtCategory (20), LicenseType, PaymentStatus
-│       │   ├── exception/      # Global exception handler (RFC 7807)
-│       │   ├── repository/     # Spring Data repositories
-│       │   ├── security/       # JwtUtil, JwtAuthFilter, UserDetailsServiceImpl
-│       │   └── service/        # S3Service, StripeService, Auth, Artwork, Order
-│       └── resources/
-│           └── application.yml
-└── frontend/                   # Vite + React + TypeScript
-    ├── src/
-    │   ├── api/                # axiosClient.ts (JWT interceptor)
-    │   ├── components/         # Navbar, ArtCard, CategoryFilter, PriceRangeSlider,
-    │   │                       #   CartDrawer, ArtUploadForm
-    │   ├── context/            # AuthContext, CartContext (with localStorage)
-    │   ├── pages/              # Home, Gallery, ArtworkDetail, ArtistDashboard,
-    │   │                       #   Login, Register, OrderSuccess
-    │   ├── services/           # authService, artworkService, orderService
-    │   └── types/              # Shared TypeScript types + 20 art categories
-    └── index.html
-```
+## 💻 Technology Stack
 
----
+### Frontend
+*   **React (Vite)**: Lightning-fast frontend build tool and library.
+*   **Tailwind CSS**: Utility-first CSS framework for a premium, responsive, and custom-styled UI.
+*   **React Router**: Client-side routing for smooth, SPA navigation.
+*   **Axios**: Promise-based HTTP client for API interactions.
 
-## Quick Start
+### Backend
+*   **Spring Boot (Java 17)**: Robust backend framework for RESTful APIs.
+*   **Spring Security & JWT**: Stateless, token-based authentication and role-based access control (Artist vs. Buyer).
+*   **PostgreSQL**: Relational database for structured, transactional data storage.
+*   **Hibernate / Spring Data JPA**: Object-Relational Mapping (ORM) for efficient database interactions.
+*   **Cloudinary SDK**: Integrated cloud storage for high-performance image delivery and transformation.
+
+### Infrastructure & Deployment
+*   **Frontend Hosting**: Vercel
+*   **Backend Hosting**: Render
+*   **Database**: Render PostgreSQL
+*   **Media Storage**: Cloudinary
+
+## 🚀 Getting Started (Local Development)
 
 ### Prerequisites
-- Java 17+, Maven 3.8+
-- Node.js 18+, npm 9+
-- PostgreSQL 14+
-- AWS account (or MinIO for local dev)
-- Stripe account (test mode)
+*   Node.js (v18+)
+*   Java 17
+*   Maven
+*   PostgreSQL running locally (port 5432)
 
-### 1. Database
+### 1. Database Setup
+Create a local PostgreSQL database named `makersmuse`:
 ```sql
 CREATE DATABASE makersmuse;
 ```
 
-### 2. Backend
+### 2. Backend Setup
+Navigate to the backend directory and configure your environment:
 ```bash
 cd backend
+```
+Create a `.env` file in the `backend` root and add your credentials:
+```env
+DB_URL=jdbc:postgresql://localhost:5432/makersmuse
+DB_USERNAME=postgres
+DB_PASSWORD=your_password
 
-# Copy env template and fill in your values
-cp .env.example .env
+JWT_SECRET=your_super_secret_jwt_key_that_is_long_enough
 
-# Export env vars (PowerShell)
-$env:DB_URL = "jdbc:postgresql://localhost:5432/makersmuse"
-$env:DB_USERNAME = "postgres"
-$env:DB_PASSWORD = "yourpassword"
-$env:JWT_SECRET = "$(openssl rand -base64 32)"
-$env:AWS_REGION = "us-east-1"
-$env:AWS_ACCESS_KEY_ID = "..."
-$env:AWS_SECRET_ACCESS_KEY = "..."
-$env:AWS_S3_PUBLIC_BUCKET = "makersmuse-thumbnails-public"
-$env:AWS_S3_PRIVATE_BUCKET = "makersmuse-highres-private"
-$env:STRIPE_API_KEY = "sk_test_..."
-$env:STRIPE_WEBHOOK_SECRET = "whsec_..."
-
-mvn spring-boot:run
-# Starts on http://localhost:8080
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
 
-### 3. Frontend
+Run the Spring Boot application:
+```bash
+mvn spring-boot:run
+```
+*The backend will start on `http://localhost:8080`.*
+
+### 3. Frontend Setup
+Navigate to the frontend directory:
 ```bash
 cd frontend
-cp .env.example .env
 npm install
-npm run dev
-# Opens http://localhost:5173
 ```
 
-### 4. Stripe Webhook (local dev)
+Create a `.env` file in the `frontend` root:
+```env
+VITE_API_BASE_URL=http://localhost:8080/api
+```
+
+Start the Vite development server:
 ```bash
-stripe listen --forward-to localhost:8080/api/webhook/stripe
+npm run dev
 ```
+*The frontend will start on `http://localhost:5173`.*
+
+## 🔒 Authentication Roles
+The platform utilizes two primary roles:
+1.  `ROLE_ARTIST`: Can upload art, manage their portfolio, and view sales.
+2.  `ROLE_CUSTOMER`: Can browse, purchase art, leave reviews, and download digital assets.
 
 ---
-
-## API Endpoints
-
-### Auth
-| Method | Path               | Auth    | Description        |
-|--------|--------------------|---------|--------------------|
-| POST   | /api/auth/register | Public  | Register user      |
-| POST   | /api/auth/login    | Public  | Login, get JWT     |
-
-### Artworks
-| Method | Path                  | Auth          | Description                |
-|--------|-----------------------|---------------|----------------------------|
-| GET    | /api/artworks         | Public        | Search with filters        |
-| GET    | /api/artworks/{id}    | Public        | Get artwork details        |
-| GET    | /api/artworks/my      | ROLE_ARTIST   | Artist's own artworks      |
-| POST   | /api/artworks         | ROLE_ARTIST   | Upload artwork (multipart) |
-| DELETE | /api/artworks/{id}    | ROLE_ARTIST   | Soft-delete artwork        |
-
-### Orders
-| Method | Path                              | Auth           | Description                    |
-|--------|-----------------------------------|----------------|--------------------------------|
-| POST   | /api/orders/checkout              | ROLE_CUSTOMER  | Create Stripe Checkout Session |
-| GET    | /api/orders/my                    | ROLE_CUSTOMER  | List my orders                 |
-| GET    | /api/orders/{id}/download/{item}  | ROLE_CUSTOMER  | Get presigned download URL     |
-
-### Webhooks
-| Method | Path                  | Auth   | Description           |
-|--------|-----------------------|--------|-----------------------|
-| POST   | /api/webhook/stripe   | Public | Stripe event handler  |
-
----
-
-## Art Categories (All 20)
-
-`OIL_PAINTING` · `WATERCOLOR` · `DIGITAL_ILLUSTRATION` · `THREE_D_RENDER` · `ABSTRACT_ART` ·
-`PHOTOGRAPHY` · `PIXEL_ART` · `POP_ART` · `SCULPTURE_CERAMICS` · `TYPOGRAPHY_CALLIGRAPHY` ·
-`CONCEPT_ART` · `VECTOR_GRAPHICS` · `MINIMALIST_ART` · `ANIME_MANGA` · `CYBERPUNK_SCIFI` ·
-`FANTASY_ART` · `STREET_ART_GRAFFITI` · `AI_GENERATED_ART` · `TEXTURES_PATTERNS` · `MIXED_MEDIA`
-
----
-
-## Security Notes
-
-- **JWT**: Use a strong 256-bit base64 secret in production. Rotate periodically.
-- **S3**: Public bucket should have ACL enabled. Private bucket must be fully private.
-- **Stripe Webhooks**: Always verify `Stripe-Signature` header (already implemented).
-- **CORS**: Set `CORS_ALLOWED_ORIGINS` to your production domain only.
-- **Passwords**: BCrypt with strength 12 (adjust for hardware).
-
----
-
-## Production Deployment Notes
-
-1. Change `ddl-auto: update` → `validate` and use Flyway/Liquibase migrations
-2. Set `show-sql: false` in `application.yml`
-3. Use a secrets manager (AWS Secrets Manager, Vault) instead of raw env vars
-4. Enable HTTPS (TLS termination at load balancer or via Caddy/nginx)
-5. Configure CloudFront in front of your public S3 bucket for CDN caching
+*Built with ❤️ for the creative community.*
