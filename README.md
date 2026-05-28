@@ -28,6 +28,7 @@ Makers Muse is a premium, two-sided art marketplace connecting talented artists 
 
 ### Backend
 *   **Spring Boot (Java 17)**: Robust backend framework for RESTful APIs.
+*   **Spring AI**: Integrated artificial intelligence capabilities using Gemini 1.5 Flash for smart chatbot assistance.
 *   **Spring Security & JWT**: Stateless, token-based authentication and role-based access control (Artist vs. Buyer).
 *   **PostgreSQL**: Relational database for structured, transactional data storage.
 *   **Hibernate / Spring Data JPA**: Object-Relational Mapping (ORM) for efficient database interactions.
