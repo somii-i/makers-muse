@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Plus, Grid, Trash2, Loader2, Package, RefreshCw } from 'lucide-react'
 import ArtUploadForm from '../components/ArtUploadForm'
 import { artworkService } from '../services/artworkService.js'
-import { CATEGORY_LABELS } from '../types/index.js'
+import { CATEGORY_LABELS, getImageUrl } from '../types/index.js'
 import { useAuth } from '../context/AuthContext.jsx'
 
 export default function ArtistDashboard() {
@@ -105,7 +105,7 @@ export default function ArtistDashboard() {
                   <div key={art.id} className="card group overflow-hidden">
                     <div className="relative aspect-[4/3] bg-canvas-700 overflow-hidden">
                       <img
-                        src={art.thumbnailUrl}
+                        src={getImageUrl(art.thumbnailUrl)}
                         alt={art.title}
                         className="w-full h-full object-cover"
                       />

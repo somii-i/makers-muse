@@ -1,6 +1,6 @@
 import { ShoppingCart, Eye } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { CATEGORY_LABELS } from '../types/index.js'
+import { CATEGORY_LABELS, getImageUrl } from '../types/index.js'
 import { useCart } from '../context/CartContext.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
 
@@ -14,10 +14,11 @@ export default function ArtCard({ artwork }) {
       {/* Thumbnail */}
       <Link to={`/artworks/${artwork.id}`} className="relative block overflow-hidden aspect-[4/3] bg-canvas-700">
         <img
-          src={artwork.thumbnailUrl}
+          src={getImageUrl(artwork.thumbnailUrl)}
           alt={artwork.title}
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          onError={(e) => { e.target.style.opacity = '0.3' }}
         />
         {/* Overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">

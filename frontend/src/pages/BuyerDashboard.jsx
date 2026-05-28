@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Package, Download, Loader2, ShoppingBag } from 'lucide-react'
 import { orderService } from '../services/orderService.js'
 import apiClient from '../api/axiosClient.js'
+import { getImageUrl } from '../types/index.js'
 
 export default function BuyerDashboard() {
   const [orders, setOrders] = useState([])
@@ -80,12 +81,12 @@ export default function BuyerDashboard() {
                 <div className="space-y-3">
                   {order.items.map(item => (
                     <div key={item.itemId} className="flex items-center gap-4 p-3 rounded-xl bg-canvas-700/50">
-                      <img src={item.thumbnailUrl} alt={item.artworkTitle}
+                      <img src={getImageUrl(item.thumbnailUrl)} alt={item.artworkTitle}
                         className="w-14 h-14 rounded-lg object-cover flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <p className="font-medium text-white text-sm line-clamp-1">{item.artworkTitle}</p>
                         <p className="text-xs text-white/40 mt-0.5">
-                          ₹{Number(item.purchasePrice).toFixed(2)} • {item.licenseType === 'DIGITAL' ? 'Digital Download' : 'Physical Physical'}
+                          ₹{Number(item.purchasePrice).toFixed(2)} • {item.licenseType === 'DIGITAL' ? 'Digital Download' : 'Physical Print'}
                         </p>
                       </div>
                       {item.licenseType === 'DIGITAL' && order.paymentStatus === 'COMPLETED' && (

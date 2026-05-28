@@ -4,7 +4,7 @@ import { ShoppingCart, ArrowLeft, Download, Maximize2, Loader2 } from 'lucide-re
 import { artworkService } from '../services/artworkService.js'
 import { useCart } from '../context/CartContext.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
-import { CATEGORY_LABELS } from '../types/index.js'
+import { CATEGORY_LABELS, getImageUrl } from '../types/index.js'
 
 export default function ArtworkDetailPage() {
   const { id } = useParams()
@@ -59,7 +59,7 @@ export default function ArtworkDetailPage() {
               onClick={() => setZoomed(true)}
             >
               <img
-                src={artwork.thumbnailUrl}
+                src={getImageUrl(artwork.thumbnailUrl)}
                 alt={artwork.title}
                 className="w-full object-contain max-h-[600px]"
               />
@@ -143,7 +143,7 @@ export default function ArtworkDetailPage() {
           onClick={() => setZoomed(false)}
         >
           <img
-            src={artwork.thumbnailUrl}
+            src={getImageUrl(artwork.thumbnailUrl)}
             alt={artwork.title}
             className="max-w-full max-h-full rounded-2xl object-contain animate-fade-in"
           />
