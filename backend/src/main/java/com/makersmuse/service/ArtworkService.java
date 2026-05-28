@@ -29,6 +29,7 @@ public class ArtworkService {
     private final ArtworkRepository artworkRepository;
     private final UserRepository userRepository;
     private final LocalStorageService localStorageService;
+    private final CloudinaryService cloudinaryService;
 
     /**
      * Uploads a new artwork — stores high-res in private S3, thumbnail in public S3.
@@ -64,11 +65,23 @@ public class ArtworkService {
                 .build();
         artwork = artworkRepository.save(artwork);
 
-        // Upload files locally
-        String highResKey = localStorageService.uploadHighRes(file, artwork.getId());
-        String thumbnailUrl = localStorageService.uploadThumbnail(file, artwork.getId());
+        // Upload to Cloudinary (production) or local disk (dev)
+        String thumbnailUrl;
+        String highResKey;
 
-        // Update with real S3 URLs
+        if (cloudinaryService.isEnabled()) {
+            String folder = "makers-muse";
+            thumbnailUrl = cloudinaryService.uploadImage(
+                    file, folder + "/thumbnails", "artwork_" + artwork.getId() + "_thumb");
+            highResKey = cloudinaryService.uploadHighRes(
+                    file, folder + "/highres", "artwork_" + artwork.getId() + "_highres");
+        } else {
+            // Fallback: save to local disk (dev only)
+            highResKey = localStorageService.uploadHighRes(file, artwork.getId());
+            thumbnailUrl = localStorageService.uploadThumbnail(file, artwork.getId());
+        }
+
+        // Update with real URLs
         artwork.setHighResKey(highResKey);
         artwork.setThumbnailUrl(thumbnailUrl);
         artwork = artworkRepository.save(artwork);

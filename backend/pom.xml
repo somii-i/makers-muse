@@ -130,6 +130,13 @@
             <version>0.4.20</version>
         </dependency>
 
+        <!-- Cloudinary — persistent cloud image storage -->
+        <dependency>
+            <groupId>com.cloudinary</groupId>
+            <artifactId>cloudinary-http44</artifactId>
+            <version>1.38.0</version>
+        </dependency>
+
 
 
         <!-- Spring Mail (for OTP / contact emails) -->
