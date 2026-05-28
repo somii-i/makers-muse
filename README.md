@@ -1,105 +1,312 @@
 # Makers Muse 🎨
 
-Makers Muse is a premium, two-sided art marketplace connecting talented artists with art collectors and enthusiasts. It provides a platform for artists to showcase their portfolios, sell original physical artworks, and offer digital licenses, while giving buyers a seamless, curated shopping experience.
+A full-stack AI-powered digital marketplace for artists and buyers to showcase, explore, and purchase creative artwork.
 
-![Makers Muse Gallery](frontend/public/hero-gallery.png)
+---
 
-## 🌟 Key Features
+## 🌐 Live Demo
 
-### For Artists
-*   **Artist Dashboard**: Dedicated portal to manage portfolios, track sales, and monitor earnings.
-*   **Artwork Management**: Upload high-resolution artworks with automatic thumbnail generation.
-*   **Flexible Licensing**: Sell physical originals or offer digital usage licenses.
-*   **Cloud Storage**: Permanent, secure image hosting via Cloudinary.
+### 🔗 Website
 
-### For Buyers
-*   **Curated Gallery**: Browse artworks by category (Watercolor, Portrait, Photography, etc.) with advanced filtering.
-*   **Shopping Cart & Checkout**: Seamless purchasing flow for both physical and digital art.
-*   **Order Tracking**: Dedicated buyer dashboard to view past purchases and download digital assets.
-*   **Reviews & Ratings**: Leave feedback on purchased artworks to help the community.
+[Makers Muse Live Demo](https://makers-muse.vercel.app)
 
-## 💻 Technology Stack
+---
 
-### Frontend
-*   **React (Vite)**: Lightning-fast frontend build tool and library.
-*   **Tailwind CSS**: Utility-first CSS framework for a premium, responsive, and custom-styled UI.
-*   **React Router**: Client-side routing for smooth, SPA navigation.
-*   **Axios**: Promise-based HTTP client for API interactions.
+# 📌 Overview
 
-### Backend
-*   **Spring Boot (Java 17)**: Robust backend framework for RESTful APIs.
-*   **Spring AI**: Integrated artificial intelligence capabilities using Gemini 1.5 Flash for smart chatbot assistance.
-*   **Spring Security & JWT**: Stateless, token-based authentication and role-based access control (Artist vs. Buyer).
-*   **PostgreSQL**: Relational database for structured, transactional data storage.
-*   **Hibernate / Spring Data JPA**: Object-Relational Mapping (ORM) for efficient database interactions.
-*   **Cloudinary SDK**: Integrated cloud storage for high-performance image delivery and transformation.
+**Makers Muse** is a modern art marketplace platform built for creators and art enthusiasts.
+The platform enables artists to upload and manage their artwork while buyers can browse, explore, and interact with creative digital products in a premium and responsive environment.
 
-### Infrastructure & Deployment
-*   **Frontend Hosting**: Vercel
-*   **Backend Hosting**: Render
-*   **Database**: Render PostgreSQL
-*   **Media Storage**: Cloudinary
+The project combines scalable backend architecture with a visually rich frontend experience and AI-powered assistance.
 
-## 🚀 Getting Started (Local Development)
+---
 
-### Prerequisites
-*   Node.js (v18+)
-*   Java 17
-*   Maven
-*   PostgreSQL running locally (port 5432)
+# ✨ Features
 
-### 1. Database Setup
-Create a local PostgreSQL database named `makersmuse`:
-```sql
-CREATE DATABASE makersmuse;
+## 👨‍🎨 Artist Features
+
+* Upload and manage artworks
+* Cloud-based image storage with Cloudinary
+* Role-based authentication
+* Secure dashboard access
+* Edit and delete uploaded artwork
+
+## 🛍️ Buyer Features
+
+* Explore artworks
+* View artwork details
+* Responsive and smooth UI experience
+* AI-powered chatbot assistance
+
+## 🤖 AI Integration
+
+* Integrated AI chatbot using Gemini 1.5 Flash
+* Smart user assistance using Spring AI
+
+## 🔐 Authentication & Security
+
+* JWT-based authentication
+* Spring Security integration
+* Stateless session management
+* Role-based authorization (Artist / Buyer)
+
+## ☁️ Cloud Features
+
+* Cloudinary media storage
+* Render backend deployment
+* PostgreSQL cloud database
+* Vercel frontend hosting
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+
+* React (Vite)
+* Tailwind CSS
+* React Router
+* Axios
+
+## Backend
+
+* Spring Boot (Java 17)
+* Spring AI
+* Spring Security
+* JWT Authentication
+* Hibernate / Spring Data JPA
+* PostgreSQL
+* Cloudinary SDK
+
+## Infrastructure & Deployment
+
+* Vercel (Frontend)
+* Render (Backend)
+* Render PostgreSQL
+* Cloudinary
+
+---
+
+# 🧩 System Architecture
+
+```text
+React Frontend (Vercel)
+        │
+        ▼
+Spring Boot REST APIs (Render)
+        │
+ ┌──────┴──────┐
+ ▼             ▼
+PostgreSQL   Cloudinary
+(Render)      (Media Storage)
 ```
 
-### 2. Backend Setup
-Navigate to the backend directory and configure your environment:
+---
+
+# 📷 Project Preview
+
+## Homepage
+</br></br>
+<img width="1887" height="868" alt="Screenshot 2026-05-28 090645" src="https://github.com/user-attachments/assets/5575bbee-e6ca-4670-b1c2-aae06dcb020d" />
+</br>
+<img width="1915" height="869" alt="Screenshot 2026-05-28 091326" src="https://github.com/user-attachments/assets/8120c2e8-ccb9-493a-b761-045813c18884" />
+
+<img width="1912" height="865" alt="Screenshot 2026-05-28 091514" src="https://github.com/user-attachments/assets/c33a98a6-e260-46bc-88af-0c5aca45b2d7" />
+</br>
+<img width="1919" height="861" alt="Screenshot 2026-05-28 093117" src="https://github.com/user-attachments/assets/66b238cb-6aa7-4ea3-a9ac-c1d804005c34" />
+
+</br></br>
+
+
+
+## Artist Dashboard & Artwork Showcase
+</br></br>
+
+<img width="1891" height="878" alt="Screenshot 2026-05-28 090628" src="https://github.com/user-attachments/assets/a786381d-0b31-4747-8e51-34c2a87f4a15" />
+</br>
+
+<img width="1910" height="872" alt="Screenshot 2026-05-28 091910" src="https://github.com/user-attachments/assets/55f18e5e-ccc9-4ef9-b4e7-adf4d0ac03e2" />
+</br>
+<img width="1913" height="853" alt="Screenshot 2026-05-28 092013" src="https://github.com/user-attachments/assets/8b95c6ba-92d6-48ae-89b8-51614883009d" />
+</br></br>
+
+---
+
+# 🚀 Getting Started
+
+## 📋 Prerequisites
+
+Make sure you have the following installed:
+
+* Node.js (v18+)
+* Java 17
+* Maven
+* PostgreSQL (running locally on port 5432)
+
+---
+
+# ⚙️ Local Development Setup
+
+## 1️⃣ Clone the Repository
+
 ```bash
-cd backend
-```
-Create a `.env` file in the `backend` root and add your credentials:
-```env
-DB_URL=jdbc:postgresql://localhost:5432/makersmuse
-DB_USERNAME=postgres
-DB_PASSWORD=your_password
-
-JWT_SECRET=your_super_secret_jwt_key_that_is_long_enough
-
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
+git clone https://github.com/your-username/makers-muse.git
+cd makers-muse
 ```
 
-Run the Spring Boot application:
-```bash
-mvn spring-boot:run
-```
-*The backend will start on `http://localhost:8080`.*
+---
 
-### 3. Frontend Setup
-Navigate to the frontend directory:
+## 2️⃣ Frontend Setup
+
 ```bash
 cd frontend
 npm install
-```
-
-Create a `.env` file in the `frontend` root:
-```env
-VITE_API_BASE_URL=http://localhost:8080/api
-```
-
-Start the Vite development server:
-```bash
 npm run dev
 ```
-*The frontend will start on `http://localhost:5173`.*
 
-## 🔒 Authentication Roles
-The platform utilizes two primary roles:
-1.  `ROLE_ARTIST`: Can upload art, manage their portfolio, and view sales.
-2.  `ROLE_CUSTOMER`: Can browse, purchase art, leave reviews, and download digital assets.
+Frontend runs on:
+
+```bash
+http://localhost:5173
+```
 
 ---
-*Built with ❤️ for the creative community.*
+
+## 3️⃣ Backend Setup
+
+```bash
+cd backend
+mvn clean install
+mvn spring-boot:run
+```
+
+Backend runs on:
+
+```bash
+http://localhost:8080
+```
+
+---
+
+# 🔑 Environment Variables
+
+## Frontend `.env`
+
+```env
+VITE_API_BASE_URL=http://localhost:8080
+```
+
+---
+
+## Backend `application.properties`
+
+```properties
+# Database
+spring.datasource.url=jdbc:postgresql://localhost:5432/makers_muse
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+
+# JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# JWT
+jwt.secret=your_secret_key
+
+# Gemini AI
+spring.ai.vertex.ai.gemini.project-id=your_project_id
+spring.ai.vertex.ai.gemini.location=your_location
+
+# Cloudinary
+cloudinary.cloud-name=your_cloud_name
+cloudinary.api-key=your_api_key
+cloudinary.api-secret=your_api_secret
+```
+
+---
+
+# 🔐 Authentication Flow
+
+```text
+User Login/Register
+        │
+        ▼
+JWT Token Generated
+        │
+        ▼
+Frontend Stores Token
+        │
+        ▼
+Protected API Access
+```
+
+---
+
+# 📂 Project Structure
+
+```text
+makers-muse/
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── backend/
+│   ├── src/main/java/
+│   ├── src/main/resources/
+│   └── pom.xml
+│
+└── README.md
+```
+
+---
+
+# 🌟 Key Highlights
+
+* Full-stack production-ready architecture
+* AI-powered assistance integration
+* Premium responsive UI design
+* Secure authentication system
+* Cloud-based image handling
+* Scalable REST API structure
+* Modern deployment workflow
+
+---
+
+# 📈 Future Enhancements
+
+* Payment gateway integration
+* Wishlist functionality
+* Real-time chat between buyers and artists
+* Order tracking system
+* Advanced AI artwork recommendations
+* Admin dashboard analytics
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+```bash
+Fork the repository
+Create your feature branch
+Commit your changes
+Push to the branch
+Create a Pull Request
+```
+
+---
+
+# 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Developer
+
+Developed with passion using modern full-stack technologies and AI integration.
+
+### ⭐ If you like this project, give it a star on GitHub!
